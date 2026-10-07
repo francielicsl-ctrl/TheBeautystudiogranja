@@ -56,54 +56,65 @@ function Index() {
     { 
       title: "Corte", 
       image: "https://res.cloudinary.com/emqxcgxp/image/upload/v1786287460/cortefeminino_yvtxe5.jpg",
+      position: "center 35%",
       description: "Cortes modernos e personalizados para valorizar seu estilo único.",
       msg: "Olá! Gostaria de agendar um corte." 
     },
     { 
       title: "Escova", 
       image: "https://res.cloudinary.com/emqxcgxp/image/upload/v1786287460/escova_mvymxb.jpg",
+      position: "center 45%",
       description: "Finalização profissional para um cabelo impecável e com brilho.",
       msg: "Olá! Gostaria de agendar uma escova." 
     },
     { 
       title: "Coloração & Mechas", 
       image: "https://res.cloudinary.com/emqxcgxp/image/upload/v1786287459/mechas_2_zynjml.jpg",
+      position: "center 40%",
       description: "Técnicas avançadas para a cor perfeita e iluminação dos fios.",
       msg: "Olá! Gostaria de agendar coloração e mechas." 
     },
     { 
       title: "Progressiva", 
       image: "https://res.cloudinary.com/emqxcgxp/image/upload/v1786462480/progressiva1_jlh0u7.jpg",
+      position: "center 55%",
       description: "Redução de volume e alinhamento com máxima segurança e brilho.",
       msg: "Olá! Gostaria de agendar uma progressiva." 
     },
     { 
       title: "Tratamentos Capilares", 
       image: "https://res.cloudinary.com/emqxcgxp/image/upload/v1786471418/Editedimage_1786471412242_jxszro.png",
+      position: "15% center",
       description: "Nutrição profunda e reconstrução para fios saudáveis e fortes.",
       msg: "Olá! Gostaria de agendar um tratamento capilar." 
     },
     { 
       title: "Manicure", 
       image: "https://res.cloudinary.com/emqxcgxp/image/upload/v1786287459/manicure2_i1tdiw.jpg",
+      position: "center 70%",
+      zoom: 1.3,
       description: "Cuidado completo para mãos impecáveis e unhas perfeitas.",
       msg: "Olá! Gostaria de agendar manicure." 
     },
     { 
       title: "Pedicure", 
       image: "https://res.cloudinary.com/emqxcgxp/image/upload/v1786469189/pedicure_nshuvo.jpg",
+      position: "40% 85%",
+      zoom: 1.45,
       description: "Bem-estar e estética para seus pés com acabamento profissional.",
       msg: "Olá! Gostaria de agendar pedicure." 
     },
     { 
       title: "Produção", 
       image: "https://res.cloudinary.com/emqxcgxp/image/upload/v1786477254/WhatsApp_Image_2026-08-03_at_16.08.47_zx6qop.jpg",
+      position: "center 30%",
       description: "Produção de beleza completa para eventos, casamentos e ensaios — maquiagem, escova e finalização.",
       msg: "Olá! Gostaria de agendar uma produção." 
     },
     { 
       title: "Sobrancelha", 
       image: "https://res.cloudinary.com/emqxcgxp/image/upload/v1786462570/Captura_de_tela_2026-08-11_123535_wbscop.png",
+      position: "center center",
       description: "Design e cuidado para realçar a harmonia do seu olhar.",
       msg: "Olá! Gostaria de agendar uma sobrancelha." 
     },
@@ -205,10 +216,10 @@ function Index() {
           {/* Nav Desktop */}
           <nav className="hidden lg:flex items-center gap-10">
             {[
-              { label: "SOBRE NÓS", href: "#sobre" },
               { label: "SERVIÇOS", href: "#servicos" },
-              { label: "AVALIAÇÕES", href: "#avaliacoes" },
               { label: "RESULTADOS", href: "#resultados" },
+              { label: "SOBRE NÓS", href: "#sobre" },
+              { label: "AVALIAÇÕES", href: "#avaliacoes" },
               { label: "LOCALIZAÇÃO E CONTATO", href: "#localizacao" }
             ].map((item) => (
               <a
@@ -254,10 +265,10 @@ function Index() {
             className="w-32 mb-8"
           />
           {[
-            { label: "SOBRE NÓS", href: "#sobre" },
             { label: "SERVIÇOS", href: "#servicos" },
-            { label: "AVALIAÇÕES", href: "#avaliacoes" },
             { label: "RESULTADOS", href: "#resultados" },
+            { label: "SOBRE NÓS", href: "#sobre" },
+            { label: "AVALIAÇÕES", href: "#avaliacoes" },
             { label: "LOCALIZAÇÃO E CONTATO", href: "#localizacao" }
           ].map((item) => (
             <a
@@ -333,15 +344,21 @@ function Index() {
             {services.map((service) => (
               <div key={service.title} className="bg-white rounded-2xl shadow-sm border border-[#C9A86A]/10 hover:border-[#C9A86A]/40 transition-all group overflow-hidden flex flex-col">
                 {service.image ? (
-                  <div className="h-[220px] w-full overflow-hidden">
+                  <div className="h-[340px] w-full overflow-hidden">
                     <img 
                       src={service.image} 
                       alt={service.title}
+                      loading="lazy"
+                      style={{
+                        objectPosition: service.position,
+                        transform: service.zoom ? `scale(${service.zoom})` : undefined,
+                        transformOrigin: service.position,
+                      }}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                     />
                   </div>
                 ) : (
-                  <div className="h-[220px] w-full bg-[#FAF7F2] flex items-center justify-center">
+                  <div className="h-[340px] w-full bg-[#FAF7F2] flex items-center justify-center">
                     <img 
                       src="https://res.cloudinary.com/emqxcgxp/image/upload/v1786169532/logothebeuty_nh1erd.jpg" 
                       alt="Placeholder"
@@ -555,9 +572,6 @@ function Index() {
                   <div>
                     <h4 className="text-lg font-bold text-[#1A1A1A] mb-2">Contatos</h4>
                     <div className="flex flex-col gap-2">
-                      <a href="tel:+551146174080" className="text-[#1A1A1A]/70 hover:text-[#C9A86A]">
-                        (11) 4617-4080
-                      </a>
                       <a href="https://wa.me/5511939265215" className="text-[#1A1A1A]/70 hover:text-[#C9A86A]">
                         (11) 93926-5215 (WhatsApp)
                       </a>
@@ -595,8 +609,8 @@ function Index() {
           
           <div className="flex flex-col md:flex-row items-center justify-between gap-6 text-white/50 text-sm">
             <div className="flex gap-6">
-              <a href="#sobre" className="hover:text-[#C9A86A]">SOBRE</a>
               <a href="#servicos" className="hover:text-[#C9A86A]">SERVIÇOS</a>
+              <a href="#sobre" className="hover:text-[#C9A86A]">SOBRE</a>
               <a href="#localizacao" className="hover:text-[#C9A86A]">LOCALIZAÇÃO</a>
             </div>
             <p>© 2026 The Beauty Studio Granja Viana. Todos os direitos reservados.</p>
